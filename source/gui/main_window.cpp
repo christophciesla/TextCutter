@@ -8,7 +8,7 @@ namespace
 }
 
 MainWindow::MainWindow(QWidget* parent)
-    : QWidget(parent)
+    : QWidget{ parent }
     , tab_widget_(new QTabWidget{})
     , num_parts_(new QSpinBox{})
     , cut_button_(new QPushButton{ "Zerhacken" })
@@ -88,6 +88,12 @@ void MainWindow::CutText()
 QVector<QString> MainWindow::GenerateParts(const QString& original, const std::int32_t num_parts)
 {
     QVector<QString> parts{std::min(num_parts, kMaxNumberOfParts)};
+
+    const std::int32_t part_length{ (original.length() + num_parts - 1) / 4};
+    for (QString& part : parts)
+    {
+        part.reserve(part_length);
+    }
 
     for (std::int32_t i{ 0 }; i < original.length(); ++i)
     {
