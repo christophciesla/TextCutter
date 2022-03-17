@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget* parent)
     , tab_widget_(new QTabWidget{})
     , num_parts_(new QSpinBox{})
     , cut_button_(new QPushButton{ "Zerhacken" })
-    , reset_button_(new QPushButton{ "Zurücksetzen" })
+    , reset_button_(new QPushButton{ QLatin1String{"Zurücksetzen"} }) // @todo use translator
     , original_(new QTextEdit{})
 {
     setWindowTitle("Zerhacker");
