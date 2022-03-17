@@ -20,6 +20,7 @@ private:
     QPushButton* reset_button_;
     QTextEdit* original_;
 
+    void ClearPartTabs();
     void Reset();
     void CutText();
 
