@@ -53,34 +53,32 @@ void MainWindow::CutText()
         delete tab_widget_->widget(1);
     }
 
-    QStringList parts;
-    int num = num_parts_->value();
-    for (int i = 0; i < num; i++)
+    const auto parts{GenerateParts(original_->toPlainText(), num_parts_->value())};
+
+    for (std::int32_t i{ 0 }; i < parts.size(); ++i)
     {
-        parts.append(QString());
+        QTextEdit* part_edit = new QTextEdit(parts[i]);
+        part_edit->setReadOnly(true);
+        tab_widget_->addTab(part_edit, QString("Teil %1").arg(i+1));
     }
+}
 
-    QString original = original_->toPlainText();
+QVector<QString> MainWindow::GenerateParts(const QString& original, const std::int32_t num_parts)
+{
+    QVector<QString> parts{num_parts};
 
-    for (int i = 0; i < original.length(); i++)
+    for (std::int32_t i{ 0 }; i < original.length(); ++i)
     {
-        QChar c = original[i];
-        if (c == ' ' || c == '\n')
+        const QChar c{ original[i] };
+        if ((c == ' ') || (c == '\n'))
         {
-            parts[i % num].append('_');
+            parts[i % num_parts].append('_');
         }
         else
         {
-            parts[i % num].append(c);
+            parts[i % num_parts].append(c);
         }
     }
-
-    int counter = 1;
-    foreach(const QString & part, parts)
-    {
-        QTextEdit* pEdit = new QTextEdit(part);
-        pEdit->setReadOnly(true);
-        tab_widget_->addTab(pEdit, QString("Teil %1").arg(counter++));
-    }
+    return parts;
 }
 }

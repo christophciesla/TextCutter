@@ -2,6 +2,7 @@
 #define GUI_MAIN_WINDOW_H
 
 #include <QtWidgets>
+#include <cstdint>
 
 namespace gui
 {
@@ -21,6 +22,8 @@ private:
 
     void Reset();
     void CutText();
+
+    static QVector<QString> GenerateParts(const QString& original, const std::int32_t num_parts);
 };
 }
 
