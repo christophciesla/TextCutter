@@ -3,78 +3,84 @@
 namespace gui
 {
 MainWindow::MainWindow(QWidget* parent)
-	: QWidget(parent)
-	, _tabWidget(new QTabWidget)
-	, _numParts(new QSpinBox)
-	, _cutBtn(new QPushButton("Zerhacken"))
-	, _resetBtn(new QPushButton("Zurücksetzen"))
-	, _original(new QTextEdit)
+    : QWidget(parent)
+    , tab_widget_(new QTabWidget{})
+    , num_parts_(new QSpinBox{})
+    , cut_button_(new QPushButton{ "Zerhacken" })
+    , reset_button_(new QPushButton{ "Zurücksetzen" })
+    , original_(new QTextEdit{})
 {
-	setWindowTitle("Zerhacker");
+    setWindowTitle("Zerhacker");
 
-	_numParts->setRange(2, 10);
+    num_parts_->setRange(2, 10);
 
-	QVBoxLayout* layout = new QVBoxLayout;
-	setLayout(layout);
+    QVBoxLayout* layout = new QVBoxLayout{};
+    setLayout(layout);
 
-	layout->addWidget(_tabWidget);
+    layout->addWidget(tab_widget_);
 
-	QHBoxLayout* btnLayout = new QHBoxLayout;
-	layout->addLayout(btnLayout);
+    QHBoxLayout* btnLayout = new QHBoxLayout{};
+    layout->addLayout(btnLayout);
 
-	btnLayout->addWidget(_numParts);
-	btnLayout->addWidget(_cutBtn);
-	btnLayout->addWidget(_resetBtn);
-	btnLayout->addStretch();
+    btnLayout->addWidget(num_parts_);
+    btnLayout->addWidget(cut_button_);
+    btnLayout->addWidget(reset_button_);
+    btnLayout->addStretch();
 
-	_tabWidget->addTab(_original, "Originaltext");
+    tab_widget_->addTab(original_, "Originaltext");
 
-	connect(_resetBtn, SIGNAL(clicked()), SLOT(on_resetBtn_clicked()));
-	connect(_cutBtn, SIGNAL(clicked()), SLOT(on_cutBtn_clicked()));
+    connect(reset_button_, &QPushButton::clicked, this, &MainWindow::Reset);
+    connect(cut_button_, &QPushButton::clicked, this, &MainWindow::CutText);
 
-	on_resetBtn_clicked();
+    Reset();
 }
 
-void MainWindow::on_resetBtn_clicked(bool clearOriginal)
+void MainWindow::Reset()
 {
-	for (int i = 1; i < _tabWidget->count(); )
-	{
-		delete _tabWidget->widget(i);
-	}
-	if (clearOriginal)
-	{
-		_original->clear();
-		_numParts->setValue(2);
-	}
+    while (tab_widget_->count() > 1)
+    {
+        delete tab_widget_->widget(1);
+    }
+
+    original_->clear();
+    num_parts_->setValue(2);
 }
 
-void MainWindow::on_cutBtn_clicked()
+void MainWindow::CutText()
 {
-	on_resetBtn_clicked(false);
-	QStringList parts;
-	int num = _numParts->value();
-	for (int i = 0; i < num; i++)
-	{
-		parts.append(QString());
-	}
+    while (tab_widget_->count() > 1)
+    {
+        delete tab_widget_->widget(1);
+    }
 
-	QString original = _original->toPlainText();
+    QStringList parts;
+    int num = num_parts_->value();
+    for (int i = 0; i < num; i++)
+    {
+        parts.append(QString());
+    }
 
-	for (int i = 0; i < original.length(); i++)
-	{
-		QChar c = original[i];
-		if (c == ' ' || c == '\n')
-			parts[i % num].append('_');
-		else
-			parts[i % num].append(c);
-	}
+    QString original = original_->toPlainText();
 
-	int counter = 1;
-	foreach(const QString & part, parts)
-	{
-		QTextEdit* pEdit = new QTextEdit(part);
-		pEdit->setReadOnly(true);
-		_tabWidget->addTab(pEdit, QString("Teil %1").arg(counter++));
-	}
+    for (int i = 0; i < original.length(); i++)
+    {
+        QChar c = original[i];
+        if (c == ' ' || c == '\n')
+        {
+            parts[i % num].append('_');
+        }
+        else
+        {
+            parts[i % num].append(c);
+        }
+    }
+
+    int counter = 1;
+    foreach(const QString & part, parts)
+    {
+        QTextEdit* pEdit = new QTextEdit(part);
+        pEdit->setReadOnly(true);
+        tab_widget_->addTab(pEdit, QString("Teil %1").arg(counter++));
+    }
 }
 }

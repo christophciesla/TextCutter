@@ -7,21 +7,20 @@ namespace gui
 {
 class MainWindow : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	MainWindow(QWidget* parent = nullptr);
+    MainWindow(QWidget* parent = nullptr);
 
 private:
-	QTabWidget* _tabWidget;
-	QPushButton* _resetBtn;
-	QPushButton* _cutBtn;
-	QSpinBox* _numParts;
-	QTextEdit* _original;
+    QTabWidget* tab_widget_;
+    QSpinBox* num_parts_;
+    QPushButton* cut_button_;
+    QPushButton* reset_button_;
+    QTextEdit* original_;
 
-private slots:
-	void on_resetBtn_clicked(bool clearOriginal = true);
-	void on_cutBtn_clicked();
+    void Reset();
+    void CutText();
 };
 }
 
