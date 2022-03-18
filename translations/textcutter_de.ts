@@ -25,43 +25,43 @@
         <translation>Teil %1:</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="64"/>
+        <location filename="../source/textcutter/main.cpp" line="65"/>
         <source>Text cutter</source>
         <translation>Textzerhacker</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="67"/>
+        <location filename="../source/textcutter/main.cpp" line="68"/>
         <source>Cuts a text char by char into up to 10 parts.</source>
         <translation>Zerhackt einen Text Zeichen für Zeichen in bis zu 10 Teile.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="72"/>
+        <location filename="../source/textcutter/main.cpp" line="73"/>
         <source>Number of parts to be generated.</source>
         <translation>Anzahl der zu erzeugenden Teile.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="73"/>
+        <location filename="../source/textcutter/main.cpp" line="74"/>
         <source>If not specified, the text will be cut into two parts.</source>
         <translation>Falls nicht angegeben, wird der Text in zwei Teile geteilt.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="74"/>
+        <location filename="../source/textcutter/main.cpp" line="75"/>
         <source>number</source>
         <translation>Anzahl</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="95"/>
+        <location filename="../source/textcutter/main.cpp" line="96"/>
         <source>text</source>
         <translation>Text</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="96"/>
+        <location filename="../source/textcutter/main.cpp" line="97"/>
         <source>The original text to be cut.</source>
         <translation>Der zu zerhackende Originaltext.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="105"/>
-        <location filename="../source/textcutter/main.cpp" line="111"/>
+        <location filename="../source/textcutter/main.cpp" line="106"/>
+        <location filename="../source/textcutter/main.cpp" line="112"/>
         <source>Input text is empty.</source>
         <translation>Eingabe-Text ist leer.</translation>
     </message>

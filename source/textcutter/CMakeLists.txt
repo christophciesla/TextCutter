@@ -26,4 +26,11 @@ if(WIN32)
     add_custom_command(TARGET textcutter POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core> $<TARGET_FILE_DIR:textcutter>
         )
+
+    add_custom_command(TARGET textcutter POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:textcutter>/translations)
+    add_custom_command(TARGET textcutter POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${qt_translations_dir}/qtbase_en.qm $<TARGET_FILE_DIR:textcutter>/translations
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${qt_translations_dir}/qtbase_de.qm $<TARGET_FILE_DIR:textcutter>/translations
+        )
 endif (WIN32)

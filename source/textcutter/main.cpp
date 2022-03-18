@@ -48,7 +48,7 @@ int main( int argc, char* argv[] )
     QCoreApplication app{ argc, argv };
 
     QTranslator qt_translator{};
-    bool success{qt_translator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))};
+    bool success{ qt_translator.load(QLocale(), "qtbase", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath)) };
     if (success)
     {
         std::ignore = app.installTranslator(&qt_translator);
