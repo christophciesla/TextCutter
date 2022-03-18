@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="translations">
+        <file>textcutter_en.qm</file>
+        <file>textcutter_de.qm</file>
+    </qresource>
+</RCC>
