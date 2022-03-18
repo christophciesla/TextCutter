@@ -12,11 +12,11 @@ MainWindow::MainWindow(QWidget* parent)
     : QWidget{ parent }
     , tab_widget_(new QTabWidget{})
     , num_parts_(new QSpinBox{})
-    , cut_button_(new QPushButton{ "Zerhacken" })
-    , reset_button_(new QPushButton{ QLatin1String{"Zurücksetzen"} }) // @todo use translator
+    , cut_button_(new QPushButton{ tr("Cut") })
+    , reset_button_(new QPushButton{ tr("Reset") }) // @todo use translator
     , original_(new QTextEdit{})
 {
-    setWindowTitle("Zerhacker");
+    setWindowTitle(QApplication::applicationName());
 
     num_parts_->setRange(2, kMaxNumberOfParts);
 
@@ -33,12 +33,12 @@ MainWindow::MainWindow(QWidget* parent)
     button_layout->addWidget(reset_button_);
     button_layout->addStretch();
 
-    tab_widget_->addTab(original_, "Originaltext");
+    tab_widget_->addTab(original_, tr("Original text"));
     for (std::int32_t i{ 1 }; i <= kMaxNumberOfParts; ++i)
     {
         QTextEdit* part_edit{ new QTextEdit{} };
         part_edit->setReadOnly(true);
-        tab_widget_->addTab(part_edit, QString("Teil %1").arg(i));
+        tab_widget_->addTab(part_edit, tr("Part %1").arg(i));
     }
 
     connect(reset_button_, &QPushButton::clicked, this, &MainWindow::Reset);

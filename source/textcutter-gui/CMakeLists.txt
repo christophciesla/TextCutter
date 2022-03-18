@@ -3,6 +3,9 @@ INCLUDE_DIRECTORIES(
     ${LIBCUTTER_DIR}
     )
 
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/translations.qrc"
+        "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc" COPYONLY)
+
 set(GUI_HDRS
     gui/main_window.h
     )
@@ -11,10 +14,20 @@ set(GUI_SRCS
     gui/main_window.cpp
     )
 
+qt5_create_translation(QM_FILES
+    main.cpp
+    ${GUI_SRCS}
+    ${CMAKE_SOURCE_DIR}/translations/textcutter-gui_en.ts
+    ${CMAKE_SOURCE_DIR}/translations/textcutter-gui_de.ts
+    OPTIONS "-I ${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+
 add_executable(textcutter-gui WIN32
     ${GUI_HDRS}
     ${GUI_SRCS}
     main.cpp
+    ${QM_FILES}
+    "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
 )
 
 target_link_libraries(textcutter-gui cutter Qt5::Widgets)
