@@ -5,6 +5,7 @@ namespace gui
 {
 namespace
 {
+    const std::int32_t kMinNumberOfParts{ 2 };
     const std::int32_t kMaxNumberOfParts{ 10 };
 }
 
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
     setWindowTitle(QApplication::applicationName());
 
-    num_parts_->setRange(2, kMaxNumberOfParts);
+    num_parts_->setRange(kMinNumberOfParts, kMaxNumberOfParts);
 
     QVBoxLayout* layout = new QVBoxLayout{};
     setLayout(layout);
@@ -65,7 +66,7 @@ void MainWindow::Reset()
     ClearPartTabs();
 
     original_->clear();
-    num_parts_->setValue(2);
+    num_parts_->setValue(kMinNumberOfParts);
 }
 
 void MainWindow::CutText()
