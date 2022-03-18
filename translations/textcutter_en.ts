@@ -6,64 +6,64 @@
     <message>
         <location filename="../source/textcutter/main.cpp" line="19"/>
         <source>Invalid format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalid format.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="20"/>
         <location filename="../source/textcutter/main.cpp" line="25"/>
         <source>Creating %1 text parts which is minimum.</source>
-        <translation type="unfinished"></translation>
+        <translation>Creating %1 text parts which is minimum.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="30"/>
         <source>Creating %1 text parts which is maximum.</source>
-        <translation type="unfinished"></translation>
+        <translation>Creating %1 text parts which is maximum.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="40"/>
         <source>Part %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Part %1:</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="57"/>
         <source>Text cutter</source>
-        <translation type="unfinished"></translation>
+        <translation>Text cutter</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="60"/>
         <source>Cuts a text char by char into up to 10 parts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuts a text char by char into up to 10 parts.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="65"/>
         <source>Number of parts to be generated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Number of parts to be generated.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="66"/>
         <source>If not specified, the text will be cut into two parts.</source>
-        <translation type="unfinished"></translation>
+        <translation>If not specified, the text will be cut into two parts.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="67"/>
         <source>number</source>
-        <translation type="unfinished"></translation>
+        <translation>number</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="88"/>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>text</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="89"/>
         <source>The original text to be cut.</source>
-        <translation type="unfinished"></translation>
+        <translation>The original text to be cut.</translation>
     </message>
     <message>
         <location filename="../source/textcutter/main.cpp" line="98"/>
         <location filename="../source/textcutter/main.cpp" line="104"/>
         <source>Input text is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Input text is empty.</translation>
     </message>
 </context>
 </TS>
