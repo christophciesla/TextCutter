@@ -11,7 +11,7 @@ set(CMAKE_AUTOUIC ON)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools REQUIRED)
 
 set(LIBCUTTER_DIR ${CMAKE_SOURCE_DIR}/source/libcutter)
 
