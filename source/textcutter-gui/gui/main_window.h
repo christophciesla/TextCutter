@@ -23,8 +23,6 @@ private:
     void ClearPartTabs();
     void Reset();
     void CutText();
-
-    static QVector<QString> GenerateParts(const QString& original, const std::int32_t num_parts);
 };
 }
 

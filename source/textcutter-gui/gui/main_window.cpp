@@ -1,4 +1,5 @@
-#include "main_window.h"
+#include "gui/main_window.h"
+#include "cutter/cut_text.h"
 
 namespace gui
 {
@@ -71,7 +72,7 @@ void MainWindow::CutText()
 {
     ClearPartTabs();
 
-    const auto parts{GenerateParts(original_->toPlainText(), num_parts_->value())};
+    const auto parts{cutter::CutText(original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
 
     for (std::int32_t i{ 0 }; i < parts.size(); ++i)
     {
@@ -83,30 +84,5 @@ void MainWindow::CutText()
             tab_widget_->setTabVisible(tab_index, true);
         }
     }
-}
-
-QVector<QString> MainWindow::GenerateParts(const QString& original, const std::int32_t num_parts)
-{
-    QVector<QString> parts{std::min(num_parts, kMaxNumberOfParts)};
-
-    const std::int32_t part_length{ (original.length() + num_parts - 1) / 4};
-    for (QString& part : parts)
-    {
-        part.reserve(part_length);
-    }
-
-    for (std::int32_t i{ 0 }; i < original.length(); ++i)
-    {
-        const QChar c{ original[i] };
-        if ((c == ' ') || (c == '\n'))
-        {
-            parts[i % num_parts].append('_');
-        }
-        else
-        {
-            parts[i % num_parts].append(c);
-        }
-    }
-    return parts;
 }
 }
