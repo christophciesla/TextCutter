@@ -13,6 +13,18 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools REQUIRED)
 
+if(WIN32)
+    get_target_property(QT5_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
+    # Ask Qt5 where to put the translations
+    execute_process(
+        COMMAND ${QT5_QMAKE_EXECUTABLE} -query QT_INSTALL_TRANSLATIONS
+        OUTPUT_VARIABLE qt_translations_dir OUTPUT_STRIP_TRAILING_WHITESPACE)
+    # make sure we have / and not \ as qmake gives on windows
+    file(TO_CMAKE_PATH "${qt_translations_dir}" qt_translations_dir)
+    set(QT_TRANSLATIONS_DIR ${qt_translations_dir} CACHE PATH
+        "The location of the Qt translations" FORCE)
+endif (WIN32)
+
 set(LIBCUTTER_DIR ${CMAKE_SOURCE_DIR}/source/libcutter)
 
 add_subdirectory(source)
