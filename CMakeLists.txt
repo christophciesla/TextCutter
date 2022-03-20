@@ -13,6 +13,10 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets LinguistTools REQUIRED)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/bin)
+
 if(WIN32)
     get_target_property(QT5_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
     # Ask Qt5 where to put the translations
