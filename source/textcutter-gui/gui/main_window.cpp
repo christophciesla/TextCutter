@@ -5,17 +5,17 @@ namespace gui
 {
 namespace
 {
-    const std::int32_t kMinNumberOfParts{ 2 };
-    const std::int32_t kMaxNumberOfParts{ 10 };
+    constexpr std::int32_t kMinNumberOfParts{ 2 };
 }
 
 MainWindow::MainWindow(QWidget* parent)
     : QWidget{ parent }
-    , tab_widget_(new QTabWidget{})
-    , num_parts_(new QSpinBox{})
-    , cut_button_(new QPushButton{ tr("Cut") })
-    , reset_button_(new QPushButton{ tr("Reset") }) // @todo use translator
-    , original_(new QTextEdit{})
+    , tab_widget_{new QTabWidget{}}
+    , num_parts_{new QSpinBox{}}
+    , cut_button_{new QPushButton{ tr("Cut") }}
+    , reset_button_{new QPushButton{ tr("Reset") }}
+    , original_{new QTextEdit{}}
+    , part_edits_{}
 {
     setWindowTitle(QApplication::applicationName());
 
@@ -35,11 +35,11 @@ MainWindow::MainWindow(QWidget* parent)
     button_layout->addStretch();
 
     tab_widget_->addTab(original_, tr("Original text"));
-    for (std::int32_t i{ 1 }; i <= kMaxNumberOfParts; ++i)
+    for (std::int32_t i{ 0 }; i < kMaxNumberOfParts; ++i)
     {
         QTextEdit* part_edit{ new QTextEdit{} };
         part_edit->setReadOnly(true);
-        tab_widget_->addTab(part_edit, tr("Part %1").arg(i));
+        part_edits_[i] = part_edit;
     }
 
     connect(reset_button_, &QPushButton::clicked, this, &MainWindow::Reset);
@@ -48,16 +48,17 @@ MainWindow::MainWindow(QWidget* parent)
     Reset();
 }
 
+MainWindow::~MainWindow()
+{
+    qDeleteAll(part_edits_);
+}
+
 void MainWindow::ClearPartTabs()
 {
-    for (std::int32_t i{ 1 }; i <= kMaxNumberOfParts; ++i)
+    for(QTextEdit* part_edit: part_edits_)
     {
-        tab_widget_->setTabVisible(i, false);
-        QTextEdit* part_edit{ qobject_cast<QTextEdit*>(tab_widget_->widget(i)) };
-        if (part_edit != nullptr)
-        {
-            part_edit->clear();
-        }
+        part_edit->clear();
+        tab_widget_->removeTab(1);
     }
 }
 
@@ -74,16 +75,13 @@ void MainWindow::CutText()
     ClearPartTabs();
 
     const auto parts{cutter::CutText(original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
+    const std::int32_t num_parts{std::min(parts.size(), kMaxNumberOfParts)};
 
-    for (std::int32_t i{ 0 }; i < parts.size(); ++i)
+    for (std::int32_t i{ 0 }; i < num_parts; ++i)
     {
-        const std::int32_t tab_index{ i + 1 };
-        QTextEdit* part_edit{ qobject_cast<QTextEdit*>(tab_widget_->widget(tab_index)) };
-        if (part_edit != nullptr)
-        {
-            part_edit->setText(parts[i]);
-            tab_widget_->setTabVisible(tab_index, true);
-        }
+        QTextEdit* part_edit{part_edits_[i]};
+        part_edit->setText(parts[i]);
+        tab_widget_->addTab(part_edit, tr("Part %1").arg(i + 1));
     }
 }
 }
