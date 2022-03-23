@@ -10,7 +10,11 @@ class TextCutter
     Q_DECLARE_TR_FUNCTIONS(TextCutter)
 
 public:
+    static bool InitializeTranslator(QTranslator& translator);
+
     static QVector<QString> CutText(const QString& text, const std::int32_t num_parts);
+
+    static QString LoadFile(const QString& path, bool* ok, QString* error);
 };
 }
 

@@ -61,6 +61,13 @@ int main( int argc, char* argv[] )
         std::ignore = app.installTranslator(&app_translator);
     }
 
+    QTranslator common_translator{};
+    success = common::TextCutter::InitializeTranslator(common_translator);
+    if (success)
+    {
+        std::ignore = app.installTranslator(&common_translator);
+    }
+
     app.setApplicationName(QCoreApplication::tr("Text cutter"));
 
     QCommandLineParser command_line_parser{};

@@ -25,43 +25,43 @@
         <translation>Part %1:</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="64"/>
+        <location filename="../source/textcutter/main.cpp" line="71"/>
         <source>Text cutter</source>
         <translation>Text cutter</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="67"/>
+        <location filename="../source/textcutter/main.cpp" line="74"/>
         <source>Cuts a text char by char into up to 10 parts.</source>
         <translation>Cuts a text char by char into up to 10 parts.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="72"/>
+        <location filename="../source/textcutter/main.cpp" line="79"/>
         <source>Number of parts to be generated.</source>
         <translation>Number of parts to be generated.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="73"/>
+        <location filename="../source/textcutter/main.cpp" line="80"/>
         <source>If not specified, the text will be cut into two parts.</source>
         <translation>If not specified, the text will be cut into two parts.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="74"/>
+        <location filename="../source/textcutter/main.cpp" line="81"/>
         <source>number</source>
         <translation>number</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="95"/>
+        <location filename="../source/textcutter/main.cpp" line="102"/>
         <source>text</source>
         <translation>text</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="96"/>
+        <location filename="../source/textcutter/main.cpp" line="103"/>
         <source>The original text to be cut.</source>
         <translation>The original text to be cut.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter/main.cpp" line="105"/>
-        <location filename="../source/textcutter/main.cpp" line="111"/>
+        <location filename="../source/textcutter/main.cpp" line="112"/>
+        <location filename="../source/textcutter/main.cpp" line="118"/>
         <source>Input text is empty.</source>
         <translation>Input text is empty.</translation>
     </message>
