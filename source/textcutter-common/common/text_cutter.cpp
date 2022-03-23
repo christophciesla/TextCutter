@@ -2,7 +2,7 @@
 
 namespace common
 {
-QVector<QString> CutText(const QString& text, const std::int32_t num_parts)
+QVector<QString> TextCutter::CutText(const QString& text, const std::int32_t num_parts)
 {
     QVector<QString> parts{ num_parts };
 

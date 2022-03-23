@@ -74,7 +74,8 @@ void MainWindow::CutText()
 {
     ClearPartTabs();
 
-    const auto parts{common::CutText(original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
+    const auto parts{common::TextCutter::CutText(
+        original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
     const std::int32_t num_parts{std::min(parts.size(), kMaxNumberOfParts)};
 
     for (std::int32_t i{ 0 }; i < num_parts; ++i)

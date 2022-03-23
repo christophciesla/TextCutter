@@ -112,7 +112,7 @@ int main( int argc, char* argv[] )
         exit(1);
     }
 
-    const auto parts{common::CutText(input_text, num_parts)};
+    const auto parts{common::TextCutter::CutText(input_text, num_parts)};
     OutputParts(parts);
 
 
