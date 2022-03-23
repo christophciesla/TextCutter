@@ -3,16 +3,17 @@ INCLUDE_DIRECTORIES(
     )
 
 set(CUTTER_HDRS
-    cutter/cut_text.h
+    common/text_cutter.h
     )
 
 set(CUTTER_SRCS
-    cutter/cut_text.cpp
+    common/text_cutter.cpp
     )
 
-add_library(cutter
+add_library(
+    textcutter-common
     ${CUTTER_HDRS}
     ${CUTTER_SRCS}
     )
 
-target_link_libraries(cutter Qt5::Core)
+target_link_libraries(textcutter-common Qt5::Core)

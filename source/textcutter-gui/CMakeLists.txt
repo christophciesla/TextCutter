@@ -30,7 +30,7 @@ add_executable(textcutter-gui WIN32
     "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
 )
 
-target_link_libraries(textcutter-gui cutter Qt5::Widgets)
+target_link_libraries(textcutter-gui textcutter-common Qt5::Widgets)
 
 if(WIN32)
     target_link_libraries(textcutter-gui Qt5::WinMain)

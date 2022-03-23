@@ -1,6 +1,6 @@
-#include "cutter/cut_text.h"
+#include "common/text_cutter.h"
 
-namespace cutter
+namespace common
 {
 QVector<QString> CutText(const QString& text, const std::int32_t num_parts)
 {

@@ -1,7 +1,7 @@
 #include <QtCore>
 #include <cstdint>
 
-#include "cutter/cut_text.h"
+#include "common/text_cutter.h"
 
 namespace
 {
@@ -112,7 +112,7 @@ int main( int argc, char* argv[] )
         exit(1);
     }
 
-    const auto parts{cutter::CutText(input_text, num_parts)};
+    const auto parts{common::CutText(input_text, num_parts)};
     OutputParts(parts);
 
 
