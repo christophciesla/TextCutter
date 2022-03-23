@@ -8,7 +8,6 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/translations.qrc"
 
 qt5_create_translation(QM_FILES
     main.cpp
-    ${GUI_SRCS}
     ${CMAKE_SOURCE_DIR}/translations/textcutter_en.ts
     ${CMAKE_SOURCE_DIR}/translations/textcutter_de.ts
     OPTIONS "-I ${CMAKE_CURRENT_SOURCE_DIR}"
