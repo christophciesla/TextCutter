@@ -1,5 +1,4 @@
 #include "gui/main_window.h"
-#include "cutter/cut_text.h"
 
 namespace gui
 {
@@ -10,6 +9,8 @@ namespace
 
 MainWindow::MainWindow(QWidget* parent)
     : QWidget{ parent }
+    , text_cutter_{}
+    , load_from_file_button_{new QPushButton{tr("Load original text from file...")}}
     , tab_widget_{new QTabWidget{}}
     , num_parts_{new QSpinBox{}}
     , cut_button_{new QPushButton{ tr("Cut") }}
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget* parent)
     QVBoxLayout* layout = new QVBoxLayout{};
     setLayout(layout);
 
+    layout->addWidget(load_from_file_button_);
     layout->addWidget(tab_widget_);
 
     QHBoxLayout* button_layout = new QHBoxLayout{};
@@ -42,6 +44,7 @@ MainWindow::MainWindow(QWidget* parent)
         part_edits_[i] = part_edit;
     }
 
+    connect(load_from_file_button_, &QPushButton::clicked, this, &MainWindow::LoadTextFromFile);
     connect(reset_button_, &QPushButton::clicked, this, &MainWindow::Reset);
     connect(cut_button_, &QPushButton::clicked, this, &MainWindow::CutText);
 
@@ -51,6 +54,25 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow()
 {
     qDeleteAll(part_edits_);
+}
+
+void MainWindow::LoadTextFromFile()
+{
+    const QString input_file{QFileDialog::getOpenFileName(this)};
+    if (!input_file.isNull())
+    {
+        bool ok{false};
+        QString error_msg{};
+        const QString input_text{text_cutter_.LoadFile(input_file, &ok, &error_msg)};
+        if (ok)
+        {
+            original_->setText(input_text);
+        }
+        else
+        {
+            QMessageBox::warning(this, QString(), error_msg);
+        }
+    }
 }
 
 void MainWindow::ClearPartTabs()
@@ -74,7 +96,8 @@ void MainWindow::CutText()
 {
     ClearPartTabs();
 
-    const auto parts{cutter::CutText(original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
+    const auto parts{text_cutter_.CutText(
+        original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
     const std::int32_t num_parts{std::min(parts.size(), kMaxNumberOfParts)};
 
     for (std::int32_t i{ 0 }; i < num_parts; ++i)

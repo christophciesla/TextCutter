@@ -29,6 +29,6 @@ if(WIN32)
         "The location of the Qt translations" FORCE)
 endif (WIN32)
 
-set(LIBCUTTER_DIR ${CMAKE_SOURCE_DIR}/source/libcutter)
+set(LIBCUTTER_DIR ${CMAKE_SOURCE_DIR}/source/textcutter-common)
 
 add_subdirectory(source)

@@ -19,7 +19,7 @@ add_executable(textcutter
     "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
 )
 
-target_link_libraries(textcutter cutter Qt5::Core)
+target_link_libraries(textcutter textcutter-common Qt5::Core)
 
 if(WIN32)
     add_custom_command(TARGET textcutter POST_BUILD
