@@ -26,5 +26,9 @@
         <source>Part %1</source>
         <translation>Teil %1</translation>
     </message>
+    <message>
+        <source>Load original text from file...</source>
+        <translation>Originaltext von Datei laden...</translation>
+    </message>
 </context>
 </TS>

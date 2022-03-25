@@ -18,6 +18,7 @@ public:
     ~MainWindow() override;
 
 private:
+    void LoadTextFromFile();
     void ClearPartTabs();
     void Reset();
     void CutText();
@@ -26,6 +27,7 @@ private:
 
     common::TextCutter text_cutter_;
 
+    QPushButton* load_from_file_button_;
     QTabWidget* tab_widget_;
     QSpinBox* num_parts_;
     QPushButton* cut_button_;
