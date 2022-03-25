@@ -1,23 +1,18 @@
 #include "common/text_cutter.h"
 
-struct ResourceInitializer
+void InitResource()
 {
-    ResourceInitializer()
-    {
-        Q_INIT_RESOURCE(translations_common);
-    }
-};
+    Q_INIT_RESOURCE(translations_common);
+}
 
 namespace common
 {
-namespace
-{
-    ResourceInitializer resource_initializer{};
-}
 
 TextCutter::TextCutter()
 : common_translator_{}
 {
+    InitResource();
+
     const bool success{ common_translator_.load(QLocale(), "textcutter-common", "_", ":/translations") };
     if (success)
     {
@@ -93,4 +88,5 @@ QString TextCutter::LoadFile(const QString& path, bool* ok, QString* error) cons
     }
     return file_content;
 }
+
 }
