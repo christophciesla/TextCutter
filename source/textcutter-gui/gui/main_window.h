@@ -5,6 +5,8 @@
 #include <array>
 #include <cstdint>
 
+#include "common/text_cutter.h"
+
 namespace gui
 {
 class MainWindow : public QWidget
@@ -21,6 +23,8 @@ private:
     void CutText();
 
     static constexpr std::int32_t kMaxNumberOfParts{ 10 };
+
+    common::TextCutter text_cutter_;
 
     QTabWidget* tab_widget_;
     QSpinBox* num_parts_;

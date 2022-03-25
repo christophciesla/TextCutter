@@ -4,12 +4,12 @@
 <context>
     <name>TextCutter</name>
     <message>
-        <location filename="../source/textcutter-common/common/text_cutter.cpp" line="67"/>
+        <location filename="../source/textcutter-common/common/text_cutter.cpp" line="76"/>
         <source>Cannot open file.</source>
         <translation>Cannot open file.</translation>
     </message>
     <message>
-        <location filename="../source/textcutter-common/common/text_cutter.cpp" line="73"/>
+        <location filename="../source/textcutter-common/common/text_cutter.cpp" line="82"/>
         <source>File does not exist.</source>
         <translation>File does not exist.</translation>
     </message>

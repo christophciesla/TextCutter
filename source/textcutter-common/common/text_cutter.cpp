@@ -15,12 +15,21 @@ namespace
     ResourceInitializer resource_initializer{};
 }
 
-bool TextCutter::InitializeTranslator(QTranslator& translator)
+TextCutter::TextCutter()
+: common_translator_{}
 {
-    return translator.load(QLocale(), "textcutter-common",  "_", ":/translations");
+    const bool success{ common_translator_.load(QLocale(), "textcutter-common", "_", ":/translations") };
+    if (success)
+    {
+        QCoreApplication* app{QCoreApplication::instance()};
+        if (app != nullptr)
+        {
+            std::ignore = app->installTranslator(&common_translator_);
+        }
+    }
 }
 
-QVector<QString> TextCutter::CutText(const QString& text, const std::int32_t num_parts)
+QVector<QString> TextCutter::CutText(const QString& text, const std::int32_t num_parts) const
 {
     QVector<QString> parts{ num_parts };
 
@@ -45,7 +54,7 @@ QVector<QString> TextCutter::CutText(const QString& text, const std::int32_t num
     return parts;
 }
 
-QString TextCutter::LoadFile(const QString& path, bool* ok, QString* error)
+QString TextCutter::LoadFile(const QString& path, bool* ok, QString* error) const
 {
     bool success{false};
     QString error_str{};

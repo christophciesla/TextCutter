@@ -1,5 +1,4 @@
 #include "gui/main_window.h"
-#include "common/text_cutter.h"
 
 namespace gui
 {
@@ -10,6 +9,7 @@ namespace
 
 MainWindow::MainWindow(QWidget* parent)
     : QWidget{ parent }
+    , text_cutter_{}
     , tab_widget_{new QTabWidget{}}
     , num_parts_{new QSpinBox{}}
     , cut_button_{new QPushButton{ tr("Cut") }}
@@ -74,7 +74,7 @@ void MainWindow::CutText()
 {
     ClearPartTabs();
 
-    const auto parts{common::TextCutter::CutText(
+    const auto parts{text_cutter_.CutText(
         original_->toPlainText(), std::min(num_parts_->value(), kMaxNumberOfParts))};
     const std::int32_t num_parts{std::min(parts.size(), kMaxNumberOfParts)};
 
