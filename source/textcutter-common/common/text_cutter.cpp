@@ -69,6 +69,7 @@ QString TextCutter::LoadFile(const QString& path, bool* ok, QString* error) cons
             file_content = QString::fromUtf8(file_content_raw);
             success = true;
             error_str = QString{};
+            file.close();
         }
         else
         {
