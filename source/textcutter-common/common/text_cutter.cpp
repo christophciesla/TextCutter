@@ -1,6 +1,6 @@
 #include "common/text_cutter.h"
 
-void InitResource()
+static void InitResource()
 {
     Q_INIT_RESOURCE(translations_common);
 }
